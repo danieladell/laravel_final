@@ -26,6 +26,31 @@
                     @endif
 
                     {{ __('WIP!') }}
+
+                    <?php
+                        $con = new mysqli("192.168.1.133","laravel_user","Hola01","laravel");
+
+                        $sql = "select * from alumnos";
+
+                        $query = $con->query($sql);
+
+                        if($query){
+                            while($r  = $query->fetch_object()){
+                                echo $r->id.",";
+                                echo $r->username.",";
+                                echo $r->firstname.",";
+                                echo $r->lastname.",";
+                                echo $r->email.",";
+                                echo $r->password.",";
+                                echo $r->course1.",";
+                                echo $r->institution."\n";
+                            }
+                        }
+
+                        header('Content-Type: application/csv');
+                        header('Content-Disposition: attachment; filename=/home/admin01/alumnos.csv;');
+
+                    ?>
                     
                 </div>
             </div>
